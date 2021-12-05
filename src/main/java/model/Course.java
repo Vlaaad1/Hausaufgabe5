@@ -1,9 +1,11 @@
 package model;
 
-import java.util.Comparator;
-import java.util.List;
 import java.util.Objects;
 
+/**
+ * Date: 5.12.2021
+ * Classname: Course
+ */
 public class Course {
 
     private int courseID;
@@ -12,6 +14,14 @@ public class Course {
     private int credits;
     private int maxEnrollment;
 
+    /**
+     * Class constructor
+     * @param courseID is the ID of the course
+     * @param name is the name of the course
+     * @param teacherID is the ID of the teacher assigned to the course
+     * @param credits is the number of credits for the course
+     * @param maxEnrollment is the maximal number of students enrolled to the course
+     */
     public Course(int courseID, String name, int teacherID, int credits, int maxEnrollment) {
         this.courseID = courseID;
         this.name = name;
@@ -19,6 +29,10 @@ public class Course {
         this.credits = credits;
         this.maxEnrollment = maxEnrollment;
     }
+
+    /**
+     * getters und setters for attributes
+     */
 
     public int getCourseID() { return courseID; }
     public void setCourseID(int courseID) { this.courseID = courseID; }
@@ -35,6 +49,10 @@ public class Course {
     public int getMaxEnrollment() { return maxEnrollment; }
     public void setMaxEnrollment(int maxEnrollment) { this.maxEnrollment = maxEnrollment;}
 
+    /**
+     * method used to display a course
+     * @return a string containing all attributes of a course
+     */
     @Override
     public String toString() {
         return "Course{" +

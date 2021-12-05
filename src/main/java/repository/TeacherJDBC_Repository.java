@@ -9,12 +9,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+/**
+ * Date: 5.12.2021
+ * Repository class that allows the user to modify the table 'teacher' from the database
+ */
 public class TeacherJDBC_Repository implements ICrudRepository<Teacher>{
 
     private String DB_URL;
     private String USER;
     private String PASSWORD;
 
+    /**
+     * This function reads the necessary dates from the 'config.properties' file
+     */
     public void openConnection() throws IOException {
         FileInputStream file = new FileInputStream("C:\\Users\\Vlad\\IDeaProjects\\Hausaufgabe5\\src\\main\\resources\\config.properties");
         Properties properties = new Properties();

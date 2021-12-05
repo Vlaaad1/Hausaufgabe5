@@ -8,10 +8,19 @@ import model.Teacher;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Date: 5.12.2021
+ * Classname: UI
+ *
+ */
 public class UI {
     private final Controller controller;
     private final Scanner input = new Scanner(System.in);
 
+    /**
+     * Class Constructor
+     * @param controller is an object of type Controller used to take the main functionalities
+     */
     public UI(Controller controller) {
         this.controller = controller;
     }
@@ -53,9 +62,9 @@ public class UI {
     }
 
     /**
-     * Function display uses a switch command to decide which methods of the controller to
-     * call;
-     * User must choose a number between 1-12 and 13 exits the app
+     * Function display uses a switch command to decide which functionalities
+     * of the controller to call;
+     * User must choose a number between 1-14 and 15 exits the application
      */
     public void display() throws IOException {
         while (true) {
@@ -118,13 +127,13 @@ public class UI {
                     this.controller.register(readStudent(), readCourse());
                     break;
                 case 5: //display all courses
-                    System.out.println(controller.findAllCourses());
+                    System.out.println(controller.retrieveCourses());
                     break;
                 case 6: //display all students
-                    System.out.println(controller.findAllStudents());
+                    System.out.println(controller.retrieveStudents());
                     break;
                 case 7: //display all teachers
-                    System.out.println(controller.findAllTeachers());
+                    System.out.println(controller.retrieveTeachers());
                     break;
                 case 8: //delete a course
                     controller.deleteCourse(this.readCourse());

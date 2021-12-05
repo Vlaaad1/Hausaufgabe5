@@ -6,12 +6,19 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Properties;
 
+/**
+ * Date: 5.12.2021
+ * Repository class that allows the user to modify the table 'enrollment' from the database
+ */
 public class EnrollmentJDBC_Repository {
 
     private String DB_URL;
     private String USER;
     private String PASSWORD;
 
+    /**
+     * This function reads the necessary dates from the 'config.properties' file
+     */
     public void openConnection() throws IOException {
         FileInputStream file = new FileInputStream("C:\\Users\\Vlad\\IDeaProjects\\Hausaufgabe5\\src\\main\\resources\\config.properties");
         Properties properties = new Properties();
@@ -21,6 +28,10 @@ public class EnrollmentJDBC_Repository {
         PASSWORD = properties.getProperty("PASSWORD");
     }
 
+    /**
+     * @param studentID is the ID of a student
+     * @return the list of courses to which the student is enrolled
+     */
     public ArrayList<Integer> findCoursesByStudentID(int studentID) throws IOException {
         openConnection();
         ArrayList<Integer> coursesIDs = new ArrayList<>();
@@ -40,6 +51,10 @@ public class EnrollmentJDBC_Repository {
         return coursesIDs;
     }
 
+    /**
+     * @param courseID is the ID of a course
+     * @return the list of students enrolled to the course
+     */
     public ArrayList<Integer> findStudentsByCourseID(int courseID) throws IOException {
         openConnection();
         ArrayList<Integer> studentsIDs = new ArrayList<>();
@@ -59,6 +74,12 @@ public class EnrollmentJDBC_Repository {
         return studentsIDs;
     }
 
+    /**
+     * Method used to complete the rows of the 'enrollment' table from database
+     * @param studentID is the ID of a student
+     * @param courseID is the ID of a course
+     * @return true if we successfully added the values in the 'enrollment' table from database
+     */
     public boolean save(int studentID, int courseID) throws IOException {
         openConnection();
         try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
@@ -73,6 +94,12 @@ public class EnrollmentJDBC_Repository {
         return false;
     }
 
+    /**
+     * This method is used to delete a specific row in the 'enrollment' table from database
+     * @param studentID is the ID of a student
+     * @param courseID is the ID of a course
+     * @return true if we successfully delete the row from the 'enrollment' table from database
+     */
     public boolean delete(int studentID, int courseID) throws IOException {
         openConnection();
         try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
@@ -87,6 +114,11 @@ public class EnrollmentJDBC_Repository {
         return false;
     }
 
+    /**
+     * This method is used to delete the rows containing the specified courseID in the 'enrollment' table from database
+     * @param courseID is the ID of a course
+     * @return true if we successfully delete the rows from the 'enrollment' table from database
+     */
     public boolean deleteStudentsByCourseID(int courseID) throws IOException {
         openConnection();
         try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
@@ -100,6 +132,11 @@ public class EnrollmentJDBC_Repository {
         return false;
     }
 
+    /**
+     * This method is used to delete the rows containing the specified studentID in the 'enrollment' table from database
+     * @param studentID is the ID of a student
+     * @return true if we successfully delete the rows from the 'enrollment' table from database
+     */
     public boolean deleteCoursesByStudentID(int studentID) throws IOException {
         openConnection();
         try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);

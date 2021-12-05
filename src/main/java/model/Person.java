@@ -2,11 +2,20 @@ package model;
 
 import java.util.Objects;
 
+/**
+ * Date: 5.12.2021
+ * Classname: Person
+ */
 public class Person {
 
     protected String firstName;
     protected String lastName;
 
+    /**
+     * Class Constructor
+     * @param firstName is the firstname of a person
+     * @param lastName is the lastname of a person
+     */
     public Person(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
